@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des tuteurs{% endblock %}
+
+{% block body %}
+<h1>Liste des tuteurs</h1>
+
+<table border="1" cellpadding="8" cellspacing="0">
+        <tr>
+            <th>ID</th>
+            <th>
+            {% set dir = currentDir == 'asc' ? 'desc' : 'asc' %}
+            <a href="{{ path('tuteur_index', queryParams | merge({'sort': 'nom', 'dir': dir})) }}">
+                Nom
+                {% if currentSort == 'nom' %}
+                    {% if currentDir == 'asc' %}↑{% else %}↓{% endif %}
+                {% endif %}
+            </a>
+        </th>
+            <th>Prenom</th>
+            <th>Entreprise</th>
+            <th>Email</th>
+            <th>Telephone</th>
+            <th>Etudiant</th>
+            <th>Action</th>
+        </tr>
+        {% for tuteur in tuteurs %}
+        <tr>
+            <td>{{ tuteur.id }}</td>
+            <td>{{ tuteur.nom }}</td>
+            <td>{{ tuteur.prenom }}</td>
+            <td>{{ tuteur.entreprise }}</td>
+            <td>{{ tuteur.email }}</td>
+            <td>{{ tuteur.telephone }}</td>
+            
+            <td>
+
+                {% if tuteur.etudiants is empty %}
+                        Aucun tuteur
+                    {% else %}
+                        <ul>
+                            {% for etudiant in tuteur.etudiants %}
+                                <li>
+                                    <strong>{{ etudiant.nom }} {{ etudiant.prenom }}</strong><br>
+                                    Sujet : {{ etudiant.sujet }}<br><br>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %} 
+                
+            
+            </td>
+            <td>
+                <a href="{{ path('tuteur_index2', {'id': tuteur.id}) }}">Voir</a>
+            </td>
+        </tr>    
+                {% endfor %}
+       
+
+</table>
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail du tuteur{% endblock %}
+
+{% block body %}
+<h1>Détail du tuteur</h1>
+
+<p><strong>ID :</strong> {{ tuteur.id }}</p>
+<p><strong>Nom :</strong> {{ tuteur.nom }}</p>
+<p><strong>Prénom :</strong> {{ tuteur.prenom }}</p>
+<p><strong>Entreprise :</strong> {{ tuteur.entreprise }}</p>
+<p><strong>Email :</strong> {{ tuteur.email }}</p>
+<p><strong>Téléphone :</strong> {{ tuteur.telephone }}</p>
+
+<h2>Étudiants</h2>
+{% if tuteur.etudiants is empty %}
+    <p>Aucun étudiant</p>
+{% else %}
+    <ul>
+        {% for etudiant in tuteur.etudiants %}
+            <li><strong>{{ etudiant.nom }} {{ etudiant.prenom }}</strong> - Sujet : {{ etudiant.sujet }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<a href="{{ path('tuteur_index') }}">Retour à la liste</a>
+{% endblock %}

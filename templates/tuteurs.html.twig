@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>"Mon Document Html tuteurs"</title>
+    
+   
+</head>
+<body>
+
+<header>
+   <ul>
+    {% for x in tuteurs %}
+    <li>{{ x.nom }} {{ x.prenom }}</li>
+    {% endfor %}
+   </ul>
+</header>
+
+
+
+</body>
+</html>

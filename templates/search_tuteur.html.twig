@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche Tuteur</title>
+</head>
+<body>
+
+    <h1>Rechercher un tuteur</h1>
+
+    <form method="POST" action="{{ path('search_tuteur') }}">
+        <label for="tuteur">Nom ou Prénom du tuteur :</label>
+        <input type="text" id="tuteur" name="tuteur" required>
+        <button type="submit">Rechercher</button>
+    </form>
+
+    {% if result is not null %}
+        <h2>Résultats de la recherche :</h2>
+        {% if result|length == 0 %}
+            <p>Aucun tuteur trouvé.</p>
+        {% else %}
+            <ul>
+                {% for tuteur in result %}
+                    <li>{{ tuteur.nom }} {{ tuteur.prenom }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+
+</body>
+</html>

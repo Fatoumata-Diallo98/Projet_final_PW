@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etudiant{% endblock %}
+
+{% block body %}
+    <h1>Etudiant</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ etudiant.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ etudiant.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ etudiant.prénom }}</td>
+            </tr>
+            <tr>
+                <th>Formation</th>
+                <td>{{ etudiant.formation }}</td>
+            </tr>
+            {# Vous pourriez ajouter ici la ligne pour afficher le tuteur : #}
+            {# <tr>
+                <th>Tuteur</th>
+                <td>{{ etudiant.tuteur.nom }} {{ etudiant.tuteur.prénom }}</td>
+            </tr> #}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_etudiant_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('app_etudiant_edit', {'id': etudiant.id}) }}">Modifier</a>
+    <a href="{{ path('app_visite_index', {'id_etudiant': etudiant.id}) }}" class="btn btn-primary">
+        Voir les visites et comptes-rendus
+    </a>
+
+    {{ include('etudiant/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,54 @@
+{# templates/visite/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Visites de {{ etudiant.prenom }} {{ etudiant.nom }}{% endblock %}
+
+{% block body %}
+    <h1>Visites de l'étudiant : {{ etudiant.prenom }} {{ etudiant.nom }}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Commentaire</th> 
+                <th>CompteRendu</th> 
+                <th>Statut</th>
+                <th>Lieu</th>
+                <th>Objectif</th>
+                <th>Remarques</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for visite in visites %}
+            <tr>
+                <td>{{ visite.id }}</td>
+                <td>{{ visite.date ? visite.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ visite.commentaire }}</td>
+                <td>{{ visite.compteRendu }}</td>
+                <td>{{ visite.statut }}</td>
+                <td>{{ visite.lieu }}</td>
+                <td>{{ visite.objectif }}</td>
+                <td>{{ visite.remarques }}</td>
+                <td>
+                    {# Les liens corrigés incluent 'id_etudiant' #}
+                    <a href="{{ path('app_visite_show', {'id_etudiant': etudiant.id, 'id': visite.id}) }}">show</a>
+                    <a href="{{ path('app_visite_edit', {'id_etudiant': etudiant.id, 'id': visite.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Aucune visite trouvée pour cet étudiant.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# Lien pour créer une nouvelle visite, corrigé pour inclure 'id_etudiant' #}
+    <a href="{{ path('app_visite_new', {'id_etudiant': etudiant.id}) }}">Créer une nouvelle visite</a>
+    
+    <hr>
+    <a href="{{ path('app_etudiant_index') }}">Retour à la liste des étudiants</a>
+{% endblock %}

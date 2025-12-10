@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visite de {{ etudiant.prenom }} {{ etudiant.nom }}{% endblock %}
+
+{% block body %}
+    {# On peut ajouter le nom de l'étudiant dans le titre #}
+    <h1>Détails de la Visite de l'étudiant : {{ etudiant.prenom }} {{ etudiant.nom }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ visite.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ visite.date ? visite.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ visite.commentaire }}</td>
+            </tr>
+            <tr>
+                <th>CompteRendu</th>
+                <td>{{ visite.compteRendu }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ visite.statut }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ visite.lieu }}</td>
+            </tr>
+            <tr>
+                <th>Objectif</th>
+                <td>{{ visite.objectif }}</td>
+            </tr>
+            <tr>
+                <th>Remarques</th>
+                <td>{{ visite.remarques }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {# Lien corrigé pour revenir à la liste des visites de cet étudiant #}
+    <a href="{{ path('app_visite_index', {'id_etudiant': etudiant.id}) }}">Retour à la liste des visites</a>
+
+    {# Lien corrigé pour l'édition #}
+    <a href="{{ path('app_visite_edit', {'id_etudiant': etudiant.id, 'id': visite.id}) }}">Modifier</a>
+
+    {# Le formulaire de suppression doit aussi recevoir l'ID de l'étudiant #}
+    {{ include('visite/_delete_form.html.twig', {'id_etudiant': etudiant.id}) }}
+{% endblock %}

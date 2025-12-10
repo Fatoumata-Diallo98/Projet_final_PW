@@ -3,3 +3,11 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+indexter:
+    path: /calcul/{chiffre}
+    controller: App\Controller\MainController::indexter
+    defaults:
+        chiffre: 0
+    requirements: 
+        chiffre: '^(?:[0-9]|[1-9][0-9])$'

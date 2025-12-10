@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}Welcome!{% endblock %}
+        </title>
+
+        <link rel="icon" href="data:image/svg+xml,
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'>
+                <text y='1.2em' font-size='96'></text>
+                <text y='1.3em' x='0.2em' font-size='76' fill='#fff'>sf</text>
+            </svg>
+        ">
+
+        {# Bloc CSS #}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        {% endblock %}
+    </head>
+
+    <body>
+        <nav style="background:#f4f4f4; padding:10px;">
+            <a href="/" style="font-weight:bold; margin-right:20px;">MonApp</a>
+            <a href="{{ path('tuteur_index') }}" style="margin-right:10px;">Tuteur</a>
+
+        </nav>
+
+        {# Bloc principal #}
+        <main style="padding: 20px;">
+            {% block body %}{% endblock %}
+        </main>
+
+        {# Bloc JS #}
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+</html>
+
